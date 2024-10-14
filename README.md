@@ -2,7 +2,7 @@
 
 **This document is README.ko.md file translated with Google Translator.**
 
-We analyze the compression method used by the first generation DisplayLink devices to transmit compressed data.
+This document describes the compression method used by the first generation DisplayLink devices to transmit compressed data.
 
 ## How the compression works
 
@@ -34,15 +34,17 @@ The fields in each row have the following roles:
 
 ### decomptable_util.py
 
-A module for manipulating the decompression table transmitted to the device.
+A Python module for manipulating the decompression table transmitted to the device.
 
     ./decomptable_util.py decomptable.bin
 
 ### generate_graph.py
 
-Prints the jump graph (in DOT language format) of the decompression table to standard output.
+Prints the graph (in DOT language format) of the decompression table to standard output.
 
     ./generate_graph.py decomptable.bin > graph.dot
+
+Example: Generated [graph](./img/tubecable_huffman.svg) of [decompression table from Tubecable](https://github.com/floe/tubecable/blob/db650b417c1d9ffd9b0e5d93ac167176f337f177/tubecable.c#L325)
 
 ### lutgenerator.py
 
