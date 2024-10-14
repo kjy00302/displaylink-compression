@@ -12,23 +12,27 @@ The compression method uses a type of Huffman encoding as analyzed by the Tubeca
 
 ## Structure of the decompression table
 
-A row of the decompression table consists of a total of 9 bytes. It consists of the following fields:
+A node of the decompression table consists of a total of 9 bytes. It consists of the following fields:
 
 ![Compression table row](./img/comprow.svg)
 
-A row can be further decomposed into two columns.
+A node can be further decomposed into two elements.
 
-|Row|Color|UnkByte|UnkBool|NextRow|
+|Element|Color|UnkByte|UnkBool|NextNode|
 | :--- | :--- | :--- | :--- | :--- |
-|0|ShortA|Byte1A|bool(Byte2A & 0x60)|(Byte2A & 0x1f) << 4 | ByteAB >> 4|
-|1|ShortB|Byte1B|bool(Byte2B & 0x60)|(Byte2B & 0x1f) << 4 | ByteAB & 0x0f|
+|A|ShortA|Byte1A|bool(Byte2A & 0x60)|(Byte2A & 0x1f) << 4 | ByteAB >> 4|
+|B|ShortB|Byte1B|bool(Byte2B & 0x60)|(Byte2B & 0x1f) << 4 | ByteAB & 0x0f|
 
-The fields in each row have the following roles:
+The fields in each element have the following roles:
 
  - Color: The color to add to the color accumulator.
  - UnkByte: Not yet figured out.
  - UnkBool: Not yet figured out.
- - NextRow: The number of the row to move to.
+ - NextNode: The number of the node to move to.
+
+## Example: How the bitstream `111000` is interpreted as `0xF800`
+
+![decompression figure](./img/decoding.svg)
 
 ## Utilities
 
